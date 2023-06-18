@@ -1,0 +1,14 @@
+.bannerImg {
+    --tw-gradient-stops: var(--tw-gradient-from),
+        var(--tw-gradient-to, rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to top, var(--tw-gradient-stops));
+
+    --tw-gradient-from: rgb(0, 0, 0);
+}
+
+.textStroke1Gray {
+    -webkit-text-stroke: 1px gray;
+}
+.textStroke2Black {
+    -webkit-text-stroke: 2px black;
+}
