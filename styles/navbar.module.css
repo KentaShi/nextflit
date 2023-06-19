@@ -1,0 +1,17 @@
+.container {
+    background-image: linear-gradient(to bottom, var(--gradient-stops));
+
+    --gradient-from: var(--black);
+    --gradient-stops: var(--gradient-from), var(--gradient-to, rgba(0, 0, 0, 0));
+}
+
+.navDropdown {
+    box-shadow: var(--shadow30, 0 0 #0000), var(--ring-shadow, 0 0 #0000),
+        var(--shadow30);
+}
+
+.linkName {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+}
