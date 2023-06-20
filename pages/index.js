@@ -3,10 +3,19 @@ import { Roboto_Slab } from "next/font/google"
 import Head from "next/head"
 import Banner from "@/components/Banner"
 import NavBar from "@/components/NavBar"
+import Card from "@/components/Card"
+import SectionCards from "@/components/SectionCards"
 
 const roboto = Roboto_Slab({ weight: "400", subsets: ["vietnamese"] })
 
 export default function Home() {
+    const disneyVideos = [
+        { imgUrl: "/static/clifford.webp" },
+        { imgUrl: "/static/clifford.webp" },
+        { imgUrl: "/static/clifford.webp" },
+        { imgUrl: "/static/clifford.webp" },
+        { imgUrl: "/static/clifford.webp" },
+    ]
     return (
         <div className=''>
             <Head>
@@ -20,9 +29,20 @@ export default function Home() {
                 subTitle='a very cute dog'
                 imgUrl='/static/clifford.webp'
             />
-
-            {/* <NavBar/>
-            <Card/> */}
+            <div className='mt-6'>
+                <SectionCards
+                    title={"Disney"}
+                    videos={disneyVideos}
+                    size={"large"}
+                />
+                <SectionCards
+                    title={"Watch It Again"}
+                    videos={disneyVideos}
+                    size={"small"}
+                />
+            </div>
+            {/* <SectionCards title={"Watch It Again"} />
+            <SectionCards title={"Disney"} /> */}
         </div>
     )
 }

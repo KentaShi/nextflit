@@ -61,12 +61,14 @@ const NavBar = ({ username }) => {
                                     src={"/static/expand_less.svg"}
                                     width={24}
                                     height={24}
+                                    alt='expand less'
                                 />
                             ) : (
                                 <Image
                                     src={"/static/expand_more.svg"}
                                     width={24}
                                     height={24}
+                                    alt='expand more'
                                 />
                             )}
                         </button>
