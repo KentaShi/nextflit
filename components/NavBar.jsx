@@ -1,12 +1,29 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styles from "../styles/navbar.module.css"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import Image from "next/image"
-const NavBar = ({ username }) => {
+import { magic } from "@/lib/magicClient"
+
+const NavBar = () => {
     const router = useRouter()
 
     const [showDropdown, setShowDropdown] = useState(false)
+    const [username, setUsername] = useState("")
+
+    useEffect(() => {
+        const getUsername = async () => {
+            try {
+                const { email, publicAddress } = await magic.user.getMetadata()
+                if (email) {
+                    setUsername(email)
+                }
+            } catch (error) {
+                console.log("Error getting username", error)
+            }
+        }
+        getUsername()
+    }, [])
 
     const handleClickHome = (e) => {
         e.preventDefault()
@@ -21,6 +38,16 @@ const NavBar = ({ username }) => {
         e.preventDefault()
         setShowDropdown(!showDropdown)
     }
+    const handleLogOut = async (e) => {
+        e.preventDefault()
+        router.push("/login")
+        try {
+            await magic.user.logout()
+            console.log(await magic.user.isLoggedIn())
+        } catch (error) {
+            console.log("Error logging out", error)
+        }
+    }
     return (
         <div
             className={`text-white10 fixed top-0 w-[100%] z-50 ${styles.container}`}
@@ -32,6 +59,7 @@ const NavBar = ({ username }) => {
                 >
                     <div className='text-red w-32'>
                         <Image
+                            alt='Nextflit logo'
                             src='/static/netflix.svg'
                             width={128}
                             height={34}
@@ -78,12 +106,12 @@ const NavBar = ({ username }) => {
                                 className={`absolute ml-auto mt-2 py-2 px-2 bg-black50 text-white10 rounded border-blue shadow ${styles.navDropdown}`}
                             >
                                 <div>
-                                    <Link
-                                        href='/login'
+                                    <button
+                                        onClick={handleLogOut}
                                         className={`${styles.linkName} block px-2 text-base rounded cursor-pointer hover:underline`}
                                     >
                                         Sign Out
-                                    </Link>
+                                    </button>
                                     <div className='py-2'></div>
                                 </div>
                             </div>
