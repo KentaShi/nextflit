@@ -6,16 +6,16 @@ import NavBar from "@/components/NavBar"
 import Card from "@/components/Card"
 import SectionCards from "@/components/SectionCards"
 
+import { getPopularVideos, getVideos } from "@/lib/videos"
+
 const roboto = Roboto_Slab({ weight: "400", subsets: ["vietnamese"] })
 
-export default function Home() {
-    const disneyVideos = [
-        { imgUrl: "/static/clifford.webp" },
-        { imgUrl: "/static/clifford.webp" },
-        { imgUrl: "/static/clifford.webp" },
-        { imgUrl: "/static/clifford.webp" },
-        { imgUrl: "/static/clifford.webp" },
-    ]
+export default function Home({
+    disneyVideos,
+    travelVideos,
+    productivityVideos,
+    popularVideos,
+}) {
     return (
         <div className=''>
             <Head>
@@ -36,8 +36,18 @@ export default function Home() {
                     size={"large"}
                 />
                 <SectionCards
-                    title={"Watch It Again"}
-                    videos={disneyVideos}
+                    title={"Travel"}
+                    videos={travelVideos}
+                    size={"small"}
+                />
+                <SectionCards
+                    title={"Productivity"}
+                    videos={productivityVideos}
+                    size={"medium"}
+                />
+                <SectionCards
+                    title={"Popular"}
+                    videos={popularVideos}
                     size={"small"}
                 />
             </div>
@@ -45,4 +55,20 @@ export default function Home() {
             <SectionCards title={"Disney"} /> */}
         </div>
     )
+}
+
+export async function getServerSideProps() {
+    const disneyVideos = await getVideos("disney trailer")
+    const travelVideos = await getVideos("travel")
+    const productivityVideos = await getVideos("productivity")
+    const popularVideos = await getPopularVideos()
+
+    return {
+        props: {
+            disneyVideos,
+            travelVideos,
+            productivityVideos,
+            popularVideos,
+        },
+    }
 }
