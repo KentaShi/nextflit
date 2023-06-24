@@ -87,8 +87,8 @@ button {
     --white30: 209 213 219;
 
     --green10: 110 231 183/ 1;
-    --shadow10: 0 0 0/ 0.3;
-    --shadow20: 158 155 155/ 0.3;
+    --shadow10: rgba(0, 0, 0, 0.3);
+    --shadow20: rgba(158, 155, 155, 0.3);
     --shadow30: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
         0 10px 10px -5px rgba(0, 0, 0, 0.04);
 

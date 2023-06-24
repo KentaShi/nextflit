@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
                 router.push("/login")
             }
         }
-        routing()
+        //routing()
     }, [])
     useEffect(() => {
         const handleComplete = () => {
@@ -35,5 +35,6 @@ export default function App({ Component, pageProps }) {
         }
     }, [router])
 
-    return isLoading ? <Loading /> : <Component {...pageProps} />
+    return <Component {...pageProps} />
+    //return isLoading ? <Loading /> : <Component {...pageProps} />
 }
