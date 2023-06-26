@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout"
 import Loading from "@/components/Loading"
 import { magic } from "@/lib/magicClient"
 import "@/styles/globals.css"
@@ -35,6 +36,10 @@ export default function App({ Component, pageProps }) {
         }
     }, [router])
 
-    return <Component {...pageProps} />
+    return (
+        <Layout>
+            <Component {...pageProps} />
+        </Layout>
+    )
     //return isLoading ? <Loading /> : <Component {...pageProps} />
 }
