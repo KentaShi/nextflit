@@ -7,6 +7,7 @@ import Card from "@/components/Card"
 import SectionCards from "@/components/SectionCards"
 
 import { getPopularVideos, getVideos } from "@/lib/videos"
+import { startFetchMyQuery } from "@/lib/db/hasura"
 
 const roboto = Roboto_Slab({ weight: "400", subsets: ["vietnamese"] })
 
@@ -16,6 +17,7 @@ export default function Home({
     productivityVideos,
     popularVideos,
 }) {
+    startFetchMyQuery()
     return (
         <div className=''>
             <Head>
